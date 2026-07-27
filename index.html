@@ -58,22 +58,31 @@ src="https://www.facebook.com/tr?id=1557785825760628&ev=PageView&noscript=1"
     .headline em { font-style: normal; color: var(--gold); }
     .subline { text-align: center; font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 14px; padding: 0 6px; }
     .features { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 10px; width: 100%; }
-    .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 8px; text-align: center; backdrop-filter: blur(10px); transition: transform 0.2s, border-color 0.2s; }
-    .feature-card:hover { transform: translateY(-2px); border-color: rgba(22,224,168,0.4); }
+    .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 8px; text-align: center; backdrop-filter: blur(10px); opacity: 0; animation: rise 0.5s ease forwards; }
+    .feature-card:nth-child(1) { animation-delay: 0.05s; }
+    .feature-card:nth-child(2) { animation-delay: 0.15s; }
+    .feature-card:nth-child(3) { animation-delay: 0.25s; }
+    .feature-card:nth-child(4) { animation-delay: 0.35s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     .feature-icon { font-size: 17px; margin-bottom: 4px; }
     .feature-label { font-size: 10px; font-weight: 600; color: var(--text); }
     .stats-strip { display: flex; justify-content: space-around; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 8px 10px; margin-bottom: 12px; width: 100%; }
     .stat { text-align: center; }
     .stat-num { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 700; color: var(--gold); }
     .stat-label { font-size: 9px; color: var(--muted); margin-top: 1px; letter-spacing: 1px; text-transform: uppercase; }
-    .cta-btn { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 20px; border-radius: 50px; border: none; cursor: pointer; font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #16e0a8 0%, #0aa87e 100%); color: #04140f; text-decoration: none; margin-bottom: 10px; animation: pulse-btn 2.5s ease-in-out infinite; transition: transform 0.15s; }
+    .cta-btn { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 20px; border-radius: 50px; border: none; cursor: pointer; font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #16e0a8 0%, #0aa87e 100%); color: #04140f; text-decoration: none; margin-bottom: 8px; animation: pulse-btn 2.5s ease-in-out infinite; transition: transform 0.15s; }
     .cta-btn:hover { transform: scale(1.03); }
     .cta-btn::after { content: ''; position: absolute; top: 0; left: -75%; width: 50%; height: 100%; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent); transform: skewX(-20deg); animation: shimmer 2.8s ease-in-out infinite; }
     @keyframes shimmer { 0% { left: -75%; } 100% { left: 130%; } }
     @keyframes pulse-btn { 0%, 100% { box-shadow: 0 4px 24px rgba(22,224,168,0.4), 0 0 0 0 rgba(22,224,168,0.3); } 50% { box-shadow: 0 4px 24px rgba(22,224,168,0.4), 0 0 0 8px rgba(22,224,168,0); } }
-    .disclaimer { font-size: 9px; color: var(--muted); text-align: center; line-height: 1.5; margin-bottom: 10px; padding: 0 4px; margin-top: 4px; }
-    .ads-credit { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 600; color: var(--gold); background: rgba(255,184,77,0.08); border: 1px solid rgba(255,184,77,0.3); border-radius: 20px; padding: 5px 12px; text-decoration: none; letter-spacing: 0.3px; transition: background 0.2s; }
-    .ads-credit:hover { background: rgba(255,184,77,0.15); }
+    .redirect-box { width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; margin-bottom: 10px; text-align: center; }
+    .redirect-text { font-size: 11px; font-weight: 600; color: var(--muted); margin-bottom: 5px; letter-spacing: 0.3px; }
+    .redirect-text b { color: var(--gold); }
+    .progress-track { width: 100%; height: 4px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 100%; background: linear-gradient(90deg, var(--green), var(--gold)); border-radius: 4px; transform-origin: left; animation: shrink 10s linear forwards; }
+    @keyframes shrink { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+    .disclaimer { font-size: 9px; color: var(--muted); text-align: center; line-height: 1.5; margin-bottom: 10px; padding: 0 4px; margin-top: 2px; }
+    .ads-credit { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 600; color: var(--gold); background: rgba(255,184,77,0.08); border: 1px solid rgba(255,184,77,0.3); border-radius: 20px; padding: 5px 12px; letter-spacing: 0.3px; cursor: default; }
   </style>
 </head>
 <body>
@@ -121,22 +130,58 @@ src="https://www.facebook.com/tr?id=1557785825760628&ev=PageView&noscript=1"
       <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Free</div></div>
       <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Updates</div></div>
     </div>
-    <a class="cta-btn" id="ctaBtn" href="https://t.me/Gursheshmoneymastery?text=Yes%20I%20need%20without%20investment%20work%20sir%20%E2%9C%85"> 
+    <a class="cta-btn" id="ctaBtn" href="https://t.me/Gursheshmoneymastery?text=Yes%20I%20need%20without%20investment%20work%20sir%20%E2%9C%85">
       <span>✈️</span> Join Telegram Channel
     </a>
+    <div class="redirect-box">
+      <div class="redirect-text">Opening Telegram in <b id="countNum">10</b>s — or tap above</div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
     <div class="disclaimer">Joining the channel is free. Results and earnings from any task can vary and are not guaranteed. Please do your own research before proceeding.</div>
-    <a class="ads-credit" href="https://wa.me/918360000565?text=I%20need%20Your%20Ads%20Service" target="_blank" rel="noopener">📊 Ads Managed By Sukhdeep</a>
+    <span class="ads-credit">📊 Ads Managed By Sukhdeep</span>
   </div>
   <script>
-    // Fire Lead exactly once, only when the user clicks the button themselves.
-    // No auto-redirect — link navigates normally on click.
-    let leadFired = false;
-    document.getElementById('ctaBtn').addEventListener('click', function () {
+    // Fire Lead exactly once per session, whether user clicks the button
+    // or the 10s auto-redirect fires. sessionStorage stops a second Lead
+    // firing if the same visitor refreshes the page and tries again.
+    const TELEGRAM_URL = "https://t.me/Gursheshmoneymastery?text=Yes%20I%20need%20without%20investment%20work%20sir%20%E2%9C%85";
+    const LEAD_KEY = "leadFired_marketedge_gursheshmoneymastery";
+    let leadFired = sessionStorage.getItem(LEAD_KEY) === "1";
+    let redirected = false;
+
+    function fireLeadOnce() {
       if (!leadFired) {
         leadFired = true;
+        sessionStorage.setItem(LEAD_KEY, "1");
         fbq('track', 'Lead');
       }
+    }
+
+    function goToTelegram() {
+      if (redirected) return;
+      redirected = true;
+      fireLeadOnce();
+      window.location.href = TELEGRAM_URL;
+    }
+
+    document.getElementById('ctaBtn').addEventListener('click', function (e) {
+      e.preventDefault();
+      goToTelegram();
     });
+
+    // Countdown
+    let secondsLeft = 10;
+    const countEl = document.getElementById('countNum');
+    const timer = setInterval(function () {
+      secondsLeft--;
+      if (secondsLeft <= 0) {
+        clearInterval(timer);
+        countEl.textContent = "0";
+        goToTelegram();
+      } else {
+        countEl.textContent = secondsLeft;
+      }
+    }, 1000);
   </script>
 </body>
 </html>
